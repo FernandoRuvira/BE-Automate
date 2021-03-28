@@ -8,7 +8,18 @@
 
 @section('content')
 <div class="card border">
-    <div class="card-header">Clientes registrados</div>
+    <div class="card-header">
+            <div class="row">
+                <div class="col-10">
+                    <h5 class="card-title"><i class="fas fa-user-tie"></i> Clientes registrados</h5>
+                </div>
+                <div class="col-2">
+                    <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#add_client_modal">
+                        <i class="fas fa-user-plus"></i> Nuevo
+                    </a>
+                </div>
+            </div>
+    </div>
     <div class="card-body">
         @csrf
         <table id="clients_table" class="table table-sm table-striped table-bordered" style="width:100%">
