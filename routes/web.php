@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TwilioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('clients', [ClientController::class, 'showClients'])->name('clients');
+Route::get('clients/{id}', [ClientController::class, 'showClientRecord']);
+Route::post('clients/processes', [ClientController::class, 'getClientProcesses']);
+
+Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);
