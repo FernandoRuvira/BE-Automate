@@ -13,10 +13,14 @@ class TwilioController extends Controller
         $token  = "344d4feaf4985ef86dbbc0b4b4f08bde";
         $twilio = new Client($sid, $token);
 
-        $message = $twilio->messages ->create("whatsapp:+5213310820693", // to
+        $phone = '+5213312801319';
+        $local = 'Sucursal';
+        $ticket = 'NoTicket';
+
+        $message = $twilio->messages ->create("whatsapp:{$phone}", // to
                            array(
                                "from" => "whatsapp:+14155238886",
-                               "body" => "Su ticket es el 674, le avisaremos cuando sea su turno"
+                               "body" => "Your appointment is coming up on {$local} at {$ticket}"
                            )
                   );
 

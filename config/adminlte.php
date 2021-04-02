@@ -235,6 +235,33 @@ return [
             'url'         => 'clients',
             'icon'        => 'fas fa-user-tie',
         ],
+        [
+            'text'        => 'Lista de espera',
+            'url'         => 'waiting',
+            'icon'        => 'fas fa-list-ol',
+        ],
+        ['header' => 'REPORTES'],
+        [
+            'text'        => 'Tickets atendidos',
+            'url'         => 'tickets',
+            'icon'        => 'fas fa-ticket-alt',
+        ],
+        ['header' => 'CONFIGURACIÓN'],
+        [
+            'text'        => 'Sucursales',
+            'url'         => 'labs',
+            'icon'        => 'fas fa-flask',
+        ],
+        [
+            'text'        => 'Formulario',
+            'url'         => 'form',
+            'icon'        => 'fab fa-wpforms',
+        ],
+        [
+            'text'        => 'Motivos de visita',
+            'url'         => 'reasons',
+            'icon'        => 'fas fa-clipboard-list',
+        ],
     ],
 
     /*

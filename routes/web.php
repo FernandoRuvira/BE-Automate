@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LabController;
 use App\Http\Controllers\TwilioController;
 
 /*
@@ -16,7 +17,8 @@ use App\Http\Controllers\TwilioController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -28,5 +30,8 @@ require __DIR__.'/auth.php';
 Route::get('clients', [ClientController::class, 'showClients'])->name('clients');
 Route::get('clients/{id}', [ClientController::class, 'showClientRecord']);
 Route::post('clients/processes', [ClientController::class, 'getClientProcesses']);
+
+Route::get('labs', [LabController::class, 'showLabs'])->name('labs');
+Route::post('labs/save', [LabController::class, 'saveLab']);
 
 Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);
