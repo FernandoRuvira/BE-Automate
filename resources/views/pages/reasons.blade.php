@@ -25,13 +25,15 @@
         <table id="reasons_table" class="table table-sm table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>Nombre del motivo</th>
+                    <th>Nombre</th>
+                    <th>Serie</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($reasons as $reason)
                     <tr id="{{$reason->id}}">
                         <td>{{$reason->name}}</td>
+                        <td>{{$reason->serie}}</td>
                     </tr>
                 @endforeach()
             </tbody>
@@ -49,6 +51,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#reasons_table').dataTable( {
+            "order": [ 1, "asc" ],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
             }

@@ -16,6 +16,7 @@ class CreateReasonsTable extends Migration
         Schema::create('reasons', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->char('serie', 1)->unique();;
             $table->char('active', 1);
             $table->timestamps();
         });

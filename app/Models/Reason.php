@@ -9,7 +9,7 @@ class Reason extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'serie'];
     protected $attributes = [
         'active' => 'Y',
     ];

@@ -17,6 +17,16 @@
                         <label for="nameInput">Nombre</label>
                         <input type="text" class="form-control" name="name" id="nameInput" placeholder="Ingrese el nombre del motivo">
                     </div>
+
+                    <div class="form-group">
+                        <label for="serieInput">Tipo</label>
+                        <select class="custom-select form-control-border" name="serie" id="serieInput" placeholder="Seleccione la serie para el motivo">
+                            @for ($i = 65; $i <= 90; $i++)
+                                <option value="{{chr($i)}}">{{chr($i)}}</option>
+                            @endfor
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn btn-outline-primary"><i class="fas fa-check"></i> Registrar</button>
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
                 </form>

@@ -24,7 +24,8 @@ class SaveReasonsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:labs|max:255',
+            'name' => 'required|unique:reasons|max:255',
+            'serie' => 'required|unique:reasons'
         ];
     }
 }

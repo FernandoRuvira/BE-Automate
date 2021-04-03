@@ -24,7 +24,7 @@ class SaveFieldsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:labs|max:255',
+            'name' => 'required|unique:fields|max:255',
             'type' => 'required',
             'position' => 'required',
         ];

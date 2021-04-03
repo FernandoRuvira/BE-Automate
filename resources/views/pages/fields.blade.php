@@ -53,6 +53,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#fields_table').dataTable( {
+            "order": [ 2, "asc" ],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
             }

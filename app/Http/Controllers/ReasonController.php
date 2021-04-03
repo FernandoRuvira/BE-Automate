@@ -24,6 +24,7 @@ class ReasonController extends Controller
     {
         $newReason = new Reason;
         $newReason->name = $request->name;
+        $newReason->serie = $request->serie;
         $newReason->save();
 
         return redirect()->route('reasons');
