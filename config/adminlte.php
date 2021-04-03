@@ -254,7 +254,7 @@ return [
         ],
         [
             'text'        => 'Formulario',
-            'url'         => 'form',
+            'url'         => 'fields',
             'icon'        => 'fab fa-wpforms',
         ],
         [

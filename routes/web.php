@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LabController;
+use App\Http\Controllers\FieldController;
+use App\Http\Controllers\ReasonController;
 use App\Http\Controllers\TwilioController;
 
 /*
@@ -17,7 +19,10 @@ use App\Http\Controllers\TwilioController;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
+    return redirect()->route('dashboard');
+});
+
+Route::get('/home', function () {
     return redirect()->route('dashboard');
 });
 
@@ -33,5 +38,11 @@ Route::post('clients/processes', [ClientController::class, 'getClientProcesses']
 
 Route::get('labs', [LabController::class, 'showLabs'])->name('labs');
 Route::post('labs/save', [LabController::class, 'saveLab']);
+
+Route::get('fields', [FieldController::class, 'showFields'])->name('fields');
+Route::post('fields/save', [FieldController::class, 'saveField']);
+
+Route::get('reasons', [ReasonController::class, 'showReasons'])->name('reasons');
+Route::post('reasons/save', [ReasonController::class, 'saveReason']);
 
 Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);
