@@ -47,5 +47,6 @@ Route::get('reasons', [ReasonController::class, 'showReasons'])->name('reasons')
 Route::post('reasons/save', [ReasonController::class, 'saveReason']);
 
 Route::get('tickets/{lab}', [TicketController::class, 'showTicketForm']);
+Route::post('tickets/save', [TicketController::class, 'saveTicket']);
 
 Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);
