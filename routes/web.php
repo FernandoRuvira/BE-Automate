@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ReasonController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TwilioController;
 
 /*
@@ -44,5 +45,7 @@ Route::post('fields/save', [FieldController::class, 'saveField']);
 
 Route::get('reasons', [ReasonController::class, 'showReasons'])->name('reasons');
 Route::post('reasons/save', [ReasonController::class, 'saveReason']);
+
+Route::get('tickets/{lab}', [TicketController::class, 'showTicketForm']);
 
 Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);

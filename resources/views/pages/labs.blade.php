@@ -51,8 +51,8 @@
                             </div> <br> <br>
                             <div class="row">
                                 <div class="col-12 text-center">
-                                    <a href="https://quickchart.io/qr?text={{url('labs')}}&size=800&margin=4">
-                                        <img src="https://quickchart.io/qr?text={{url('labs')}}&size=150&margin=1">
+                                    <a href="https://quickchart.io/qr?text={{url('tickets/'.$lab->id)}}&size=800&margin=4">
+                                        <img src="https://quickchart.io/qr?text={{url('tickets/'.$lab->id)}}&size=150&margin=1">
                                     </a>
                                 </div>
                             </div>
