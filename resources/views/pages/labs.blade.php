@@ -43,9 +43,9 @@
                             <div class="row">
                                 <div class="col-12 text-center">
                                 @if($lab->image)
-                                    <img class="img-fluid pad" src="{{asset('img/labs').'/'.$lab->image}}" alt="image">
+                                    <img class="img-fluid pad" src="{{asset('img/labs').'/'.$lab->image}}" alt="image" style="max-width: 150px;">
                                 @else
-                                    <img class="img-fluid pad" src="{{asset('img/default.jpg')}}" alt="image">
+                                    <img class="img-fluid pad" src="{{asset('img/default.jpg')}}" alt="image" style="max-width: 150px;">
                                 @endif
                                 </div>
                             </div> <br> <br>
