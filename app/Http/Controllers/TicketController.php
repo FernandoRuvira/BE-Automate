@@ -30,11 +30,25 @@ class TicketController extends Controller
     public function saveTicket(SaveTicketsRequest $request)
     {
         $newTicket = new Ticket;
-        $newTicketAdd = new TicketAdd;
         $fields = Field::where('active', 'Y')->get();
 
         $newTicket->phone = $request->phone;
-        $newTicket->reason = $request->reason;
+        $newTicket->reason_id = $request->reason;
+        $newTicket->save();
+
+        foreach($fields as $field)
+        {
+            if ($request->has(strtolower($field->name)))
+            {
+                $newTicketAdd = new TicketAdd;
+                $newTicketAdd->ticket_id = $newTicket->id;
+                $newTicketAdd->field_id = $field->id;
+                $newTicketAdd->info = $request[strtolower($field->name)];
+                $newTicketAdd->save();
+            }
+        }
+
+        return 'success';
 
     }
 }

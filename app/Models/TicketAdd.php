@@ -9,8 +9,12 @@ class TicketAdd extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ticket_id', 'field_id', 'info'];
-    protected $attributes = [
-        'status' => 'N',
+    protected $table = 'tickets_add';
+    protected $fillable = [
+        'ticket_id',
+        'field_id',
+        'info'
     ];
+
+    public $timestamps = false;
 }
