@@ -9,23 +9,24 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-6">
+    @foreach ($queues as $queue)
+    <div class="col-md-2">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-list-ol"></i> Análisis clínicos</h3>
+                <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$queue['reason']->name}}</h3>
             </div>
 
             <div class="card-body">
+                @foreach ($queue['tickets'] as $ticket)
                 <div class="callout callout-success">
-                <h5>Ticket A001</h5>
+                    <h6>Ticket {{$ticket->ticket}}</h6>
+                    <p>Telefono: {{$ticket->phone}}</p>
+                </div>
+                @endforeach
             </div>
-
-            <div class="callout callout-info">
-                <h5>Ticket A002</h5>
-            </div>
-
         </div>
     </div>
+    @endforeach
 </div>
 
 @stop
