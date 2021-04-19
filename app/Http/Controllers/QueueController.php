@@ -16,13 +16,21 @@ class QueueController extends Controller
 
     public function showQueue()
     {
+        $queues = array();
         $reasons = Reason::where('active', 'Y')->get();
-        $waiting = Ticket::where('status', 'W')->whereDate('created_at', Carbon::today())->get();
-        $serving = Ticket::where('status', 'S')->whereDate('created_at', Carbon::today())->get();
+
+        foreach($reasons as $reason)
+        {
+            $tickets = Ticket::where([
+                ['reason_id', $reason->id],
+                ['status', '!=', 'F'],
+            ])->whereDate('created_at', Carbon::today())->orderBy('id')->get();
+
+            $queues[$reason->id] = array('reason' => $reason, 'tickets' => $tickets);
+        }
 
         return view('pages.queue', [
-            'waiting' => $waiting,
-            'serving' => $serving,
+            'queues' => $queues,
         ]);
     }
 }
