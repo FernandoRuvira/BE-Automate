@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Requests\SaveTicketsRequest;
 use App\Models\Ticket;
 use App\Models\TicketAdd;
@@ -31,7 +32,9 @@ class TicketController extends Controller
     {
         $newTicket = new Ticket;
         $fields = Field::where('active', 'Y')->get();
-
+        $serie = Reason::find($request->reason)->serie;
+        $next = Ticket::where('reason_id', $request->reason)->whereDate('created_at', Carbon::today())->count() + 1;
+        $newTicket->ticket = $serie . str_pad($next, 4, "0", STR_PAD_LEFT);
         $newTicket->phone = $request->phone;
         $newTicket->reason_id = $request->reason;
         $newTicket->save();
@@ -48,7 +51,9 @@ class TicketController extends Controller
             }
         }
 
-        return 'success';
+        return view('mobile.success', [
+            'ticket' => $newTicket,
+        ]);
 
     }
 }
