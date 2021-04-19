@@ -11,6 +11,6 @@ class Ticket extends Model
 
     protected $fillable = ['phone', 'reason'];
     protected $attributes = [
-        'status' => 'N',
+        'status' => 'W',
     ];
 }

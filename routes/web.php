@@ -6,6 +6,7 @@ use App\Http\Controllers\LabController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ReasonController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\QueueController;
 use App\Http\Controllers\TwilioController;
 
 /*
@@ -48,5 +49,7 @@ Route::post('reasons/save', [ReasonController::class, 'saveReason']);
 
 Route::get('tickets/{lab}', [TicketController::class, 'showTicketForm']);
 Route::post('tickets/save', [TicketController::class, 'saveTicket']);
+
+Route::get('queue', [QueueController::class, 'showQueue'])->name('queue');
 
 Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);

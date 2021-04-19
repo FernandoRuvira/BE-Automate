@@ -237,7 +237,7 @@ return [
         ],
         [
             'text'        => 'Lista de espera',
-            'url'         => 'waiting',
+            'url'         => 'queue',
             'icon'        => 'fas fa-list-ol',
         ],
         ['header' => 'REPORTES'],
