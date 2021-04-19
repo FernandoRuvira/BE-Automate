@@ -34,9 +34,9 @@ class TicketController extends Controller
             ['status', 'W'],
             ['phone', $request->phone],
         //  ['reason_id', $request->reason],
-        ])->whereDate('created_at', Carbon::today())->get();
+        ])->whereDate('created_at', Carbon::today())->first();
 
-        if($exist)
+        if(!empty($exist->id))
         {
             return view('mobile.warning', [
                 'ticket' => $exist,
