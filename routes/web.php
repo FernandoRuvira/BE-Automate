@@ -51,5 +51,6 @@ Route::get('tickets/{lab}', [TicketController::class, 'showTicketForm']);
 Route::post('tickets/save', [TicketController::class, 'saveTicket']);
 
 Route::get('queue', [QueueController::class, 'showQueue'])->name('queue');
+Route::get('next/{queue}', [QueueController::class, 'callNext']);
 
 Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);

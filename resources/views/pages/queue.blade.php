@@ -8,27 +8,35 @@
 
 @section('content')
 
+
+@foreach ($queues as $queue)
 <div class="row">
-    @foreach ($queues as $queue)
-    <div class="col-md-2">
+    <div class="col-md-12">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$queue['reason']->name}}</h3>
+                <h3 class="card-title"> {{$queue['reason']->name}}</h3>
+                <div class="card-tools">
+                    <a href="{{url('next/'.$queue['reason']->id)}}" class="btn btn-sm btn-outline-primary"><i class="far fa-hand-point-right"></i> Siguiente</a>
+                </div>
             </div>
 
             <div class="card-body">
-                @foreach ($queue['tickets'] as $ticket)
-                <div class="callout callout-success">
-                    <h6>Ticket {{$ticket->ticket}}</h6>
-                    <p>Telefono: {{$ticket->phone}}</p>
+                <div class="row">
+                    @foreach ($queue['tickets'] as $ticket)
+                    <div class="col-md-3">
+                        <div class="callout callout-{{$ticket->status == 'S' ? 'warning' : 'info'}}">
+                            <h5>{{$ticket->ticket}}</h5>
+                            <p>Celular: {{$ticket->phone}}</p>
+                            <p>Registro: {{date('H:i', strtotime($ticket->created_at))}}</p>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
-    @endforeach
 </div>
-
+@endforeach
 @stop
 
 @section('js')
