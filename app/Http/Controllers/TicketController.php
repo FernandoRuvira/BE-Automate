@@ -30,6 +30,19 @@ class TicketController extends Controller
 
     public function saveTicket(SaveTicketsRequest $request)
     {
+        $exist = Ticket::where([
+            ['status', 'W'],
+            ['phone', $request->phone],
+        //  ['reason_id', $request->reason],
+        ])->whereDate('created_at', Carbon::today())->get();
+
+        if($exist)
+        {
+            return view('mobile.warning', [
+                'ticket' => $exist,
+            ]);
+        }
+
         $newTicket = new Ticket;
         $fields = Field::where('active', 'Y')->get();
         $serie = Reason::find($request->reason)->serie;
@@ -54,6 +67,5 @@ class TicketController extends Controller
         return view('mobile.success', [
             'ticket' => $newTicket,
         ]);
-
     }
 }
