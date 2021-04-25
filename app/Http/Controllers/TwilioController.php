@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
+use App\Models\Ticket;
 
 class TwilioController extends Controller
 {
@@ -17,12 +18,13 @@ class TwilioController extends Controller
         $local = 'Sucursal';
         $ticket = 'NoTicket';
 
-        $message = $twilio->messages ->create("whatsapp:{$phone}", // to
-                           array(
-                               "from" => "whatsapp:+14155238886",
-                               "body" => "Your appointment is coming up on {$local} at {$ticket}"
-                           )
-                  );
+        $message = $twilio->messages->create(
+            "whatsapp:{$phone}", // to
+            array(
+                "from" => "whatsapp:+14155238886",
+                "body" => "Your appointment is coming up on {$local} at {$ticket}"
+            )
+        );
 
         print($message->sid);
     }
