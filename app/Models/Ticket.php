@@ -13,4 +13,9 @@ class Ticket extends Model
     protected $attributes = [
         'status' => 'W',
     ];
+
+    public function reason()
+    {
+        return $this->hasOne(Reason::class, 'id', 'reason_id');
+    }
 }
