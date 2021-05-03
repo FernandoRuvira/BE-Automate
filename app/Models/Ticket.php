@@ -25,7 +25,7 @@ class Ticket extends Model
     {
         $avg = DB::table('tickets_average')
             ->where('reason_id', $this->reason_id)
-            ->whereDate('created_at', Carbon::today())
+            ->whereDate('date', Carbon::today())
             ->first();
 
         return $avg->average;
