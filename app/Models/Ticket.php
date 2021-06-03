@@ -28,7 +28,9 @@ class Ticket extends Model
             ->whereDate('date', Carbon::today())
             ->first();
 
-        return $avg->average;
+        if($avg)
+            return $avg->average;
+        else return 0;
     }
 
     public function positionInLine()
