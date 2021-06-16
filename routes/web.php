@@ -38,10 +38,11 @@ require __DIR__.'/auth.php';
 
 Route::get('clients', [ClientController::class, 'showClients'])->name('clients');
 Route::get('clients/{id}', [ClientController::class, 'showClientRecord']);
-Route::post('clients/processes', [ClientController::class, 'getClientProcesses']);
+Route::post('clients/info', [ClientController::class, 'infoClient']);
 
 Route::get('labs', [LabController::class, 'showLabs'])->name('labs');
 Route::post('labs/save', [LabController::class, 'saveLab']);
+Route::post('getTicketsByLab', [LabController::class, 'showTicketsByLab']);
 
 Route::get('fields', [FieldController::class, 'showFields'])->name('fields');
 Route::post('fields/save', [FieldController::class, 'saveField']);
@@ -49,6 +50,8 @@ Route::post('fields/save', [FieldController::class, 'saveField']);
 Route::get('reasons', [ReasonController::class, 'showReasons'])->name('reasons');
 Route::post('reasons/save', [ReasonController::class, 'saveReason']);
 
+Route::get('tickets/report', [TicketController::class, 'showTickets'])->name('tickets/report');
+Route::post('tickets/search', [TicketController::class, 'search']);
 Route::get('tickets/{lab}', [TicketController::class, 'showTicketForm']);
 Route::post('tickets/save', [TicketController::class, 'saveTicket']);
 
@@ -56,3 +59,8 @@ Route::get('queue', [QueueController::class, 'showQueue'])->name('queue');
 Route::get('next/{queue}', [QueueController::class, 'callNext']);
 
 Route::get('twilio/test', [TwilioController::class, 'sandboxMessage']);
+
+Route::post('reason/delete',[ReasonController::class, 'deleteReason']);
+Route::post('labs/edit',[LabController::class, 'editLab']);
+Route::post('labs/update',[LabController::class, 'updateLab']);
+Route::post('reason/delete',[ReasonController::class, 'deleteReason']);

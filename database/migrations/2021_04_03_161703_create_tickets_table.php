@@ -17,10 +17,12 @@ class CreateTicketsTable extends Migration
             $table->id();
             $table->string('phone', 10);
             $table->char('status', 1);
+            $table->unsignedBigInteger('lab_id');
             $table->unsignedBigInteger('reason_id');
             $table->timestamps();
 
             $table->foreign('reason_id')->references('id')->on('reasons');
+            $table->foreign('lab_id')->references('id')->on('labs');
         });
     }
 

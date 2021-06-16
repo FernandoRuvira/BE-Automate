@@ -85,12 +85,16 @@
                         </div>
 
                         <div class="col-2 text-center">
-                            <a class="btn btn-app">
-                                <i class="fas fa-edit"></i> Editar
+                            <a class="btn btn-app" data-toggle="modal" data-target="#add_lab_modal_edit" onclick="editSucursal('{{ url('labs/edit') }}', '{{$lab->id}}');">
+                                <i class="fas fa-edit" href="#" data-toggle="modal" data-target="#add_lab_modal_edit" onclick="editSucursal('{{ url('labs/edit') }}', '{{$lab->id}}');"></i> Editar
                             </a>
-                            <a class="btn btn-app">
-                                <span class="badge bg-teal">67</span>
-                                <i class="fas fa-inbox"></i> Tickets
+
+                            <a class="btn btn-app" onclck="deleteSucursal('{{ url('labs/delete') }}', '{{$lab->id}}');">
+                                <i class="fas fa-eraser" onclick="deleteSucursal('{{ url('labs/delete') }}', '{{$lab->id}}');"></i> Borrar
+                            </a>
+
+                            <a class="btn btn-app" data-toggle="modal" data-target="#tickets_lab_modal" onclick="getTickets('{{$lab->id}}');">
+                                <i class="fas fa-inbox" onclick="getTickets('{{$lab->id}}');" href="#" data-toggle="modal" data-target="#tickets_lab_modal"></i> Tickets
                             </a>
                         </div>
                     </div>
@@ -109,6 +113,8 @@
 </div>
 
 @include('pages.labs_modal')
+@include('pages.tickets_lab_modal')
+@include('pages.labs_modal_edit')
 
 @stop
 
@@ -123,6 +129,16 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 <script type="text/javascript">
+var datatable;
+    $(document).ready(function() {
+       datatable = new $('#Sucursales').dataTable( {
+          buttons: [ 'copy', 'excel', 'pdf' ],
+          "order": [[ 0, "desc" ]],
+          "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+          }
+        } );
+    } );
 
 @if (count($errors) > 0)
     $('#add_lab_modal').modal('show');
@@ -198,5 +214,6 @@ $('#sunday').daterangepicker({
     picker.container.find(".calendar-table").hide();
 });
 
-</script>
+
+
 @stop

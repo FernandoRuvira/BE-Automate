@@ -11,12 +11,64 @@ use App\Models\Reason;
 use App\Models\Field;
 use App\Models\Lab;
 use App\Models\Schedule;
+use DB;
 
 class TicketController extends Controller
 {
+    public function showTickets(){
+
+        $today = Carbon::now();
+        $today = $today->format('Y-m-d');
+
+        $tickets = Ticket::join('labs', 'labs.id', 'tickets.lab_id')
+            ->select(
+                'labs.name',
+                DB::raw('COUNT(tickets.id) as cant_tickets')
+            )
+            ->where([
+                ['labs.status','A'],
+                ['tickets.status','F'],
+                ['tickets.updated_at', '>=', $today]
+            ])
+        ->groupBy('labs.name')
+        ->get();
+
+        return view('pages.tickets', [
+            'tickets' => $tickets,
+            'dateI' => $today,
+            'dateF' => $today
+        ]);
+    }
+
+    public function search(Request $r){
+
+        $dateI = $r->dateI;
+        $dateF = $r->dateF;
+
+        $tickets = Ticket::join('labs', 'labs.id', 'tickets.lab_id')
+            ->select(
+                'labs.name',
+                DB::raw('COUNT(tickets.id) as cant_tickets')
+            )
+            ->where([
+                ['labs.status','A'],
+                ['tickets.status','S']
+            ])
+            ->whereBetween('tickets.updated_at',[$dateI,$dateF])
+        ->groupBy('labs.name')
+        ->get();
+
+        return view('pages.tickets', [
+            'tickets' => $tickets,
+            'dateI' => $dateI,
+            'dateF' => $dateF
+        ]);
+    }
+
     public function showTicketForm($lab)
     {
         $validation = $this->schedulesValidation($lab);
+        //$validation = 1;
 
         if($validation == 1){
             $reasons = Reason::where('active', 'Y')->get();
@@ -45,7 +97,7 @@ class TicketController extends Controller
 
         
     }
-
+ 
     public function saveTicket(SaveTicketsRequest $request)
     {
         $exist = Ticket::where([
@@ -67,6 +119,7 @@ class TicketController extends Controller
         $next = Ticket::where('reason_id', $request->reason)->whereDate('created_at', Carbon::today())->count() + 1;
         $newTicket->ticket = $serie . str_pad($next, 4, "0", STR_PAD_LEFT);
         $newTicket->phone = $request->phone;
+        $newTicket->lab_id = $request->lab;
         $newTicket->reason_id = $request->reason;
         $newTicket->save();
 
